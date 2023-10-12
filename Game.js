@@ -21,7 +21,7 @@ class Game {
   initStyles() {
     Object.assign(this.boardPixels.style, {
       gridTemplateColumns: `repeat(${this.gridCount},1fr)`,
-      gridTemplateRows: `repeat(${this.gridCount},1fr)`
+      gridTemplateRows: `repeat(${this.gridCount},1fr)`,
     });
   }
 
@@ -37,7 +37,7 @@ class Game {
     for (let i = 0; i < this.gridCount * this.gridCount; i++) {
       const pixel = this.createElement("div", "pixel", {
         width: `100%`,
-        height: `100%`
+        height: `100%`,
       });
       this.initStyles();
       this.boardPixels.appendChild(pixel);
@@ -47,7 +47,7 @@ class Game {
   createPalette() {
     for (let i = 0; i < this.colors.length; i++) {
       const color = this.createElement("div", "color", {
-        background: this.colors[i]
+        background: this.colors[i],
       });
       this.colorsPalette.appendChild(color);
     }
@@ -80,6 +80,6 @@ class Game {
     });
   }
   returnToMain() {
-    window.location.href = "/";
+    window.location.reload();
   }
 }
