@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="index.css" />
-    <title>Static Template</title>
+    <link rel="stylesheet" href="src/styles/index.css" />
+    <title>Pixels Drawing Board!</title>
   </head>
   <body>
-    <div id="start-screen">
-      <h1>Create Your Own Drawing Board :)</h1>
+    <section id="start-screen">
+      <h1>Build Your Pixel Art Drawing Board!</h1>
+      <p>
+        Turn Pixels into Masterpieces with JavaScript Classes and DOM Magic!
+      </p>
       <button id="start-game">start game</button>
-    </div>
-    <div id="inGame-screen">
+    </section>
+    <section id="inGame-screen">
       <div id="board-pixels"></div>
       <div id="controls-container">
         <div class="grid-size">
-          <lable> Grid Size: </lable>
+          <label for="grid-size-input"> Grid Size: </label>
           <input
             type="number"
             id="grid-size-input"
@@ -25,13 +28,18 @@
           <button id="grid-size-button">submit</button>
         </div>
         <div id="colors-palette"></div>
-        <div id="buttons-control">
+        <nav id="buttons-control">
+          <span class="show-hide-grid">
+            <label for="show-hide-grid"> Hide Grid </label>
+            <input id="show-hide-grid" type="checkbox" />
+          </span>
+          <button id="undo-fill">Undo</button>
           <button id="reset-board">Clear Board</button>
           <button id="return-main">Homepage</button>
-        </div>
+        </nav>
       </div>
-    </div>
-    <script src="./Game.js"></script>
-    <script src="./index.js"></script>
+    </section>
+    <script src="./src/js/Game.js"></script>
+    <script src="./src/js/index.js"></script>
   </body>
 </html>
