@@ -15,7 +15,7 @@
       </p>
       <button id="start-game">start game</button>
     </section>
-    <section id="inGame-screen">
+    <section id="in-game-screen">
       <div id="board-pixels"></div>
       <div id="controls-container">
         <div class="grid-size">
@@ -27,18 +27,24 @@
           />
           <button id="grid-size-button">submit</button>
         </div>
-        <div id="colors-palette"></div>
-        <nav id="buttons-control">
+        <div id="colors-palette">
+          <p id="color-message" class="paragraph">please select a color</p>
+          <input type="color" class="color" />
+        </div>
+        <div id="buttons-control">
           <span class="show-hide-grid">
             <label for="show-hide-grid"> Hide Grid </label>
             <input id="show-hide-grid" type="checkbox" />
           </span>
           <button id="undo-fill">Undo</button>
+          <button id="redo-fill">Redo</button>
           <button id="reset-board">Clear Board</button>
           <button id="return-main">Homepage</button>
-        </nav>
+        </div>
       </div>
     </section>
+    <script src="./src/js/Board.js"></script>
+    <script src="./src/js/Palette.js"></script>
     <script src="./src/js/Game.js"></script>
     <script src="./src/js/index.js"></script>
   </body>
