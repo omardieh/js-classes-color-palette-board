@@ -1,13 +1,13 @@
-const startButton = document.querySelector("#start-game");
-const resetButton = document.querySelector("#reset-board");
-const returnButton = document.querySelector("#return-main");
-const undoButton = document.querySelector("#undo-fill");
-const gridInput = document.querySelector("#grid-size-input");
-const gridButton = document.querySelector("#grid-size-button");
-const gridCheckbox = document.querySelector("#show-hide-grid");
-
-const game = new Game();
-const { colorsPalette, boardPixels } = game;
+const startButton = document.querySelector("#start-game"),
+  resetButton = document.querySelector("#reset-board"),
+  returnButton = document.querySelector("#return-main"),
+  undoButton = document.querySelector("#undo-fill"),
+  redoButton = document.querySelector("#redo-fill"),
+  gridInput = document.querySelector("#grid-size-input"),
+  gridButton = document.querySelector("#grid-size-button"),
+  gridCheckbox = document.querySelector("#show-hide-grid"),
+  game = new Game(),
+  { palette, board, colorsPalette, boardPixels } = game;
 
 colorsPalette.addEventListener("click", ({ target }) => {
   if (target.classList.contains("color")) {
@@ -15,27 +15,29 @@ colorsPalette.addEventListener("click", ({ target }) => {
     target.classList.add("active");
     if (target.type === "color") {
       target.addEventListener("input", (event) => {
-        game.pickColor(event.target.value);
+        palette.pickColor(event.target.value);
+        board.pickColor(event.target.value);
       });
       return;
     }
-    game.pickColor(target.style.background);
+    palette.pickColor(target.style.background);
+    board.pickColor(target.style.background);
   }
 });
 
 boardPixels.addEventListener("click", ({ target }) => {
-  if (!game.pickedColor) return;
+  if (!board.pickedColor) return;
   if (target.classList.contains("pixel")) {
-    game.fillColor(target);
+    board.fillColor(target);
   }
 });
 
 gridInput.addEventListener("input", (e) => {
-  game.updateGridSize(Number(e.target.value));
+  board.updateGridSize(Number(e.target.value));
 });
 
 gridButton.addEventListener("click", () => {
-  game.createPixels();
+  board.createBoard();
 });
 
 startButton.addEventListener("click", () => {
@@ -43,7 +45,7 @@ startButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-  game.clearBoard();
+  board.clearBoard();
 });
 
 returnButton.addEventListener("click", () => {
@@ -51,9 +53,13 @@ returnButton.addEventListener("click", () => {
 });
 
 undoButton.addEventListener("click", () => {
-  game.undoFillColor();
+  board.undoFillColor();
+});
+
+redoButton.addEventListener("click", () => {
+  board.redoFillColor();
 });
 
 gridCheckbox.addEventListener("input", (event) => {
-  game.showHideGrid(event.target.checked);
+  board.showHideGrid(event.target.checked);
 });

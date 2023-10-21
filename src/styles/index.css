@@ -1,3 +1,16 @@
+:root {
+  --black: #0c0f0a;
+  --pink: #ff206e;
+  --yellow: #fbff12;
+  --turquoise: #41ead4;
+  --white: #f2f2f2;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,24 +18,66 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+html {
+  font-size: 18px;
+}
+
 body {
   height: 100vh;
+  min-width: 750px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 1200px;
   margin: auto;
-  background: dimgray;
+  background: var(--black);
+  color: var(--white);
 }
 
 button {
-  padding: 0.5em;
-  margin: 0.5em;
+  all: unset;
+  border: 1px solid var(--black);
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  padding: 1em;
+  color: var(--white);
+  background: var(--black);
+}
+
+button:hover {
+}
+
+#controls-container button {
+  all: unset;
+  transition: 0.5s;
+  border-radius: 14px;
+  text-transform: uppercase;
+  padding: 1em;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  color: var(--white);
+  background: var(--pink);
+  margin: 0.25em;
+  text-align: center;
+}
+
+#controls-container button:hover {
+  color: var(--black);
+  background: var(--yellow);
 }
 
 input {
-  height: 2em;
+  height: 3em;
 }
 
 #start-screen {
@@ -31,7 +86,8 @@ input {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  background: #f4f4f4;
+  background: var(--white);
+  color: var(--black);
   border-radius: 14px;
   margin: auto;
   padding: 4em;
@@ -39,25 +95,21 @@ input {
   height: 70%;
 }
 
-#start-game {
-  padding: 0.5em;
-  font-size: 1.5em;
-}
-
-#inGame-screen {
+#in-game-screen {
   display: none;
   align-items: center;
   justify-content: space-evenly;
-  background: #f4f4f4;
+  background: var(--black);
   width: 100%;
   height: 100%;
 }
 
 #board-pixels {
   height: calc(100vh - 5em);
-  flex-basis: 70%;
+  flex-basis: 60%;
   display: grid;
   width: 100%;
+  background: var(--white);
 }
 
 .pixel {
@@ -69,28 +121,48 @@ input {
 }
 
 #controls-container {
-  flex-basis: 30%;
-  background: #f4f4f4;
-  height: 100%;
+  flex-basis: 40%;
+  background: #292929;
+  height: calc(100vh - 5em);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: stretch;
+  overflow-y: scroll;
+  padding: 2em 0;
 }
 
 .grid-size {
-  height: 30%;
   display: flex;
-  flex-direction: column;
-  padding: 1em;
+  flex-direction: row;
+  padding: 2em;
+  padding-top: 0;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+}
+
+.grid-size > * {
+  flex-grow: 1;
+}
+
+.grid-size :nth-child(1) {
+  width: 100%;
 }
 
 #colors-palette {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   row-gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2em;
+}
+
+#colors-palette :nth-child(1) {
+  width: 100%;
 }
 
 .color {
@@ -98,6 +170,7 @@ input {
   width: 50px;
   border: 1px solid;
   border-radius: 4px;
+  margin: 0.25em;
 }
 
 .active {
@@ -106,12 +179,18 @@ input {
 
 #buttons-control {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 auto;
-  height: 30%;
   align-items: center;
-  width: 100%;
   justify-content: center;
+  width: 100%;
+  padding: 2em;
+  padding-bottom: 0;
+}
+
+#buttons-control button {
+  flex-grow: 1;
 }
 
 #buttons-control .show-hide-grid {
@@ -119,4 +198,5 @@ input {
   justify-content: center;
   align-items: center;
   column-gap: 0.5em;
+  width: 100%;
 }

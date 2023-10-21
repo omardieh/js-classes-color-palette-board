@@ -1,24 +1,12 @@
 class Board {
-  constructor(
-    startScreen,
-    inGameScreen,
-    boardPixels,
-    pickedColor,
-    createElement
-  ) {
-    this.startScreen = startScreen;
-    this.inGameScreen = inGameScreen;
+  constructor(boardPixels, pickedColor, createElement) {
     this.boardPixels = boardPixels;
     this.pickedColor = pickedColor;
     this.createElement = createElement;
     this.gridCount = 14;
     this.initialRun = true;
-    this.fillHistory = [];
-  }
-
-  startUp() {
-    this.updateStyles();
-    this.createPixels();
+    this.undoHistory = [];
+    this.redoHistory = [];
   }
 
   updateStyles() {
@@ -28,8 +16,9 @@ class Board {
     });
   }
 
-  createPixels() {
+  createBoard() {
     this.boardPixels.innerHTML = "";
+    this.updateStyles();
     const defaultDrawing = [
       "",
       "",
@@ -251,8 +240,6 @@ class Board {
       pixel.id = "pixel-id-" + i;
       this.boardPixels.appendChild(pixel);
     }
-
-    this.updateStyles();
   }
 
   updateGridSize(newCount) {
@@ -261,18 +248,37 @@ class Board {
   }
 
   fillColor(target) {
-    this.fillHistory.push({
+    this.undoHistory.push({
       id: target.id,
       color: target.style.background,
     });
+    "picked color :", this.pickedColor;
     target.style.background = this.pickedColor;
   }
 
   undoFillColor() {
-    if (!this.fillHistory.length) return;
-    const lastElement = this.fillHistory.pop();
+    if (!this.undoHistory.length) return;
+    const lastElement = this.undoHistory.pop();
     [...this.boardPixels.children].forEach((e) => {
       if (e.id === lastElement.id) {
+        this.redoHistory.push({
+          id: e.id,
+          color: e.style.background,
+        });
+        e.style.background = lastElement.color;
+      }
+    });
+  }
+
+  redoFillColor() {
+    if (!this.redoHistory.length) return;
+    const lastElement = this.redoHistory.pop();
+    [...this.boardPixels.children].forEach((e) => {
+      if (e.id === lastElement.id) {
+        this.undoHistory.push({
+          id: e.id,
+          color: e.style.background,
+        });
         e.style.background = lastElement.color;
       }
     });
@@ -288,5 +294,9 @@ class Board {
     [...this.boardPixels.children].forEach((pixel) => {
       pixel.style.background = "none";
     });
+  }
+
+  pickColor(color) {
+    this.pickedColor = color;
   }
 }
