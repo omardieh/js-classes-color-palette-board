@@ -9,6 +9,58 @@ const startButton = document.querySelector("#start-game"),
   game = new Game(),
   { palette, board, colorsPalette, boardPixels } = game;
 
+let isMouseDown = false,
+  currentBox = null;
+
+board.boardPixels.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  e.target.addEventListener("mousedown", (event) => {
+    isMouseDown = true;
+    currentBox = event.target;
+    if (!board.pickedColor) return;
+    if (e.target.classList.contains("pixel")) {
+      board.fillColor(e.target);
+    }
+  });
+  e.target.addEventListener("mouseup", () => {
+    isMouseDown = false;
+    currentBox = null;
+  });
+  e.target.addEventListener("mouseover", () => {
+    if (isMouseDown && currentBox !== null) {
+      if (!board.pickedColor) return;
+      if (e.target.classList.contains("pixel")) {
+        board.fillColor(e.target);
+      }
+    }
+  });
+});
+
+// [...board.boardPixels.children].forEach((child) => {
+//   const { board } = game;
+//   child.addEventListener("mousedown", (event) => {
+//     event.preventDefault();
+//     isMouseDown = true;
+//     currentBox = event.target;
+//     if (!board.pickedColor) return;
+//     if (child.classList.contains("pixel")) {
+//       board.fillColor(child);
+//     }
+//   });
+//   child.addEventListener("mouseup", () => {
+//     isMouseDown = false;
+//     currentBox = null;
+//   });
+//   child.addEventListener("mouseover", () => {
+//     if (isMouseDown && currentBox !== null) {
+//       if (!board.pickedColor) return;
+//       if (child.classList.contains("pixel")) {
+//         board.fillColor(child);
+//       }
+//     }
+//   });
+// });
+
 colorsPalette.addEventListener("click", ({ target }) => {
   if (target.classList.contains("color")) {
     [...colorsPalette.children].forEach((e) => e.classList.remove("active"));
@@ -22,13 +74,6 @@ colorsPalette.addEventListener("click", ({ target }) => {
     }
     palette.pickColor(target.style.background);
     board.pickColor(target.style.background);
-  }
-});
-
-boardPixels.addEventListener("click", ({ target }) => {
-  if (!board.pickedColor) return;
-  if (target.classList.contains("pixel")) {
-    board.fillColor(target);
   }
 });
 
