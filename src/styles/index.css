@@ -1,9 +1,9 @@
 :root {
   --black: #0c0f0a;
+  --white: #f2f2f2;
   --pink: #ff206e;
   --yellow: #fbff12;
-  --turquoise: #41ead4;
-  --white: #f2f2f2;
+  --gray: #292929;
 }
 
 ::-webkit-scrollbar {
@@ -46,25 +46,23 @@ button {
   padding: 1em;
   color: var(--white);
   background: var(--black);
-}
-
-button:hover {
-}
-
-#controls-container button {
-  all: unset;
   transition: 0.5s;
-  border-radius: 14px;
-  text-transform: uppercase;
-  padding: 1em;
-  -webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  -ms-border-radius: 14px;
-  -o-border-radius: 14px;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
+}
+
+button:hover {
+  color: var(--pink);
+  background: var(--white);
+  border: 1px solid var(--pink);
+}
+
+#controls-container button {
+  border-radius: 14px;
+  text-transform: uppercase;
+  padding: 1em;
   color: var(--white);
   background: var(--pink);
   margin: 0.25em;
@@ -72,12 +70,21 @@ button:hover {
 }
 
 #controls-container button:hover {
-  color: var(--black);
+  color: var(--pink);
   background: var(--yellow);
 }
 
 input {
   height: 3em;
+}
+
+input[type="color"] {
+  overflow: hidden;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
 }
 
 #start-screen {
@@ -122,7 +129,7 @@ input {
 
 #controls-container {
   flex-basis: 40%;
-  background: #292929;
+  background: var(--gray);
   height: calc(100vh - 5em);
   display: flex;
   flex-direction: column;
@@ -169,8 +176,12 @@ input {
   height: 50px;
   width: 50px;
   border: 1px solid;
-  border-radius: 4px;
+  border-radius: 100%;
   margin: 0.25em;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
 }
 
 .active {
