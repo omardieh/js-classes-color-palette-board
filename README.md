@@ -17,7 +17,7 @@ You need a web browser to run this project.
 
 ## Usage
 
-- Click on "Start Game" to begin creating pixel art.
+- Click on "show board" to begin creating pixel art.
 - Use the color palette to select a color.
 - Click on a pixel on the grid to fill it with the selected color.
 - Adjust the grid size using the input field and submit button.

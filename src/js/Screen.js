@@ -1,7 +1,10 @@
-class Game {
+import Board from "./Board.js";
+import Palette from "./Palette.js";
+
+export default class Screen {
   constructor() {
     this.startScreen = document.querySelector("#start-screen");
-    this.inGameScreen = document.querySelector("#in-game-screen");
+    this.mainScreen = document.querySelector("#main-screen");
     this.boardPixels = document.querySelector("#board-pixels");
     this.colorsPalette = document.querySelector("#colors-palette");
     this.colorMessage = document.querySelector("#color-message");
@@ -17,7 +20,6 @@ class Game {
       this.colorMessage,
       this.createElement
     );
-    this.startUp();
   }
 
   startUp() {
@@ -32,9 +34,9 @@ class Game {
     return element;
   }
 
-  startGame() {
+  showBoard() {
     this.startScreen.style.display = "none";
-    this.inGameScreen.style.display = "flex";
+    this.mainScreen.style.display = "flex";
   }
 
   returnToMain() {
