@@ -1,4 +1,4 @@
-class Palette {
+export default class Palette {
   constructor(colorsPalette, pickedColor, selectedColorText, createElement) {
     this.colorsPalette = colorsPalette;
     this.pickedColor = pickedColor;
